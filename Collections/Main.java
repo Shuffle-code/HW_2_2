@@ -7,32 +7,36 @@ public class Main {
         String[] array = new String[15];
         array = new String[]{"Создать", "массив", "с", "набором", "слов", "Найти", "и", "вывести", "список", "уникальных", "слов", "из", "которых", "состоит", "массив"};
 
-        listHash(addList(addArray()));
-        sumRepeatWord(addArray());
+//        printListHash(addList(array));
+//        sumRepeatWord(addArray());
+        numberRepeatInList(addArray());
 
 
-        addPhoneBookMap("Ivan","23");
+
 
 
     }
 
-    static void addPhoneBookMap(String name, String number){
-        Map<String, Set<String>> phoneBooks = new HashMap<>();
-//        Set<String> numbers = phoneBooks.getOrDefault(name, new HashSet<>());
-        if(phoneBooks.containsKey(name)){
-            phoneBooks.get(name).add(number);
-        }else {
-            Set<String> numbers = new HashSet<>();
-            numbers.add(number);
-            phoneBooks.put(name,numbers);
+    static Map<String, Integer> numberRepeatInList(String[] arr) {
+//        Map<String, Integer> values = new HashMap<>();
+//        Map<String, Integer> sorted = new TreeMap<>();
+        Map<String, Integer> linked = new LinkedHashMap<>();
+
+        for (String s : arr) {
+            int sum = 1;
+            if(linked.containsKey(s)){
+                sum = sum + 1;
+            }
+            linked.put(s, sum);
         }
-        System.out.println(phoneBooks);
+        System.out.println(linked);
+
+        return (linked);
     }
 
-    public Set<String> get(String name){
-        Map<String, Set<String>> phoneBooks = new HashMap<>();
-        return phoneBooks.getOrDefault(name, Collections.emptySet());
-    }
+
+
+
 
 
     static String[] addArray(){
@@ -40,38 +44,21 @@ public class Main {
         String[] arr = text.split(" ");
         return arr;
     }
-    static void sumRepeatWord(String[] arr){
 
-        for (int i = 0; i < arr.length; i++) {
-            int sum = 1;
-                    for (int j=i+1; j<arr.length; j++) {
-                        if(arr[i].equals(arr[j])) {
-                            sum = sum + 1;
-                            System.out.println("Word: " + arr[i] + " repeat " + sum + " times.");
-                        }
-            }
-        }
-    }
 
-    static Set<String> addList(String[] arr){
-        Set<String> word = new LinkedHashSet<>();
+//    static Set<String> addList(String[] arr){
+//        Set<String> word = new LinkedHashSet<>();
+//        for (String s : arr) {
+//            word.add(s);
+//            System.out.print(s + " ");
+//        }System.out.println(" ");
+//        return word;
+//    }
 
-        for (String s : arr) {
-            int sum = 1;
-            if(!word.add(s)){
-                sum = sum + 1;
-                System.out.println("\nWord: " + s + " repeat " + sum + " times.");
-            }
-            word.add(s);
-            System.out.print(s + " ");
-        }System.out.println(" ");
-        return word;
-    }
-
-    static void listHash(Set<String> word) {
-        for (String w : word) {
-            System.out.println("Word that do not repeat: " + w);
-        }
-    }
+//    static void printListHash(Set<String> word) {
+//        for (String w : word) {
+//            System.out.println("Word that do not repeat: " + w);
+//        }
+//    }
 
 }
